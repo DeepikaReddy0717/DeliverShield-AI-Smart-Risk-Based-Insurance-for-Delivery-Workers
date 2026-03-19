@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+/* Background */
+
+body{
+background:linear-gradient(135deg,#f1f5f9,#e2e8f0);
+font-family:'Segoe UI',sans-serif;
+}
+
+/* Page title */
+
+.page-title{
+font-size:30px;
+font-weight:700;
+color:#1e293b;
+margin-bottom:25px;
+letter-spacing:.5px;
+}
+
+/* Register button */
+
+.btn-primary{
+background:linear-gradient(135deg,#3b82f6,#2563eb);
+border:none;
+padding:10px 22px;
+border-radius:30px;
+font-weight:600;
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+transition:.3s;
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 25px rgba(0,0,0,0.2);
+}
+
+/* Table Card */
+
+.table-card{
+background:rgba(255,255,255,0.9);
+padding:30px;
+border-radius:20px;
+box-shadow:0 20px 40px rgba(0,0,0,0.08);
+border:1px solid rgba(226,232,240,0.8);
+backdrop-filter:blur(6px);
+}
+
+/* Table */
+
+table{
+width:100%;
+border-collapse:separate;
+border-spacing:0;
+overflow:hidden;
+border-radius:12px;
+}
+
+/* Header */
+
+table th{
+background:linear-gradient(135deg,#334155,#1e293b);
+color:white;
+padding:15px;
+font-weight:600;
+letter-spacing:.5px;
+}
+
+/* Cells */
+
+table td{
+padding:14px;
+border-bottom:1px solid #e2e8f0;
+color:#475569;
+font-size:15px;
+}
+
+/* Hover */
+
+table tr:hover td{
+background:#f8fafc;
+transition:.2s;
+}
+
+/* Buttons */
+
+.btn-warning{
+background:#facc15;
+border:none;
+border-radius:25px;
+padding:6px 16px;
+font-weight:500;
+color:#1e293b;
+}
+
+.btn-danger{
+background:#ef4444;
+border:none;
+border-radius:25px;
+padding:6px 16px;
+color:white;
+}
+
+.btn-warning:hover,
+.btn-danger:hover{
+transform:translateY(-1px);
+opacity:.9;
+}
+
+</style>
+
+
+<h2 class="page-title">Delivery Workers</h2>
+
+<a href="/add-worker/" class="btn btn-primary mb-3">
+ Register Worker
+</a>
+
+<div class="table-card">
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>City</th>
+<th>Platform</th>
+<th>Income</th>
+<th>Plan</th>
+<th>Risk</th>
+<th>Actions</th>
+</tr>
+
+{% for worker in workers %}
+
+<tr>
+
+<td><strong>{{ worker.name }}</strong></td>
+<td>{{ worker.city }}</td>
+<td>{{ worker.platform }}</td>
+<td>₹ {{ worker.daily_income }}</td>
+<td>{{ worker.plan }}</td>
+
+<td>
+
+{% if worker.risk_status == "Yes" %}
+<span class="badge bg-danger">
+Yes ({{ worker.risk_percent }}%)
+</span>
+{% else %}
+<span class="badge bg-success">
+No
+</span>
+{% endif %}
+
+</td>
+
+<td>
+
+<a href="/edit-worker/{{ worker.id }}/"
+class="btn btn-warning btn-sm">✏ Edit</a>
+
+<a href="/delete-worker/{{ worker.id }}/"
+class="btn btn-danger btn-sm">🗑 Delete</a>
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+{% endblock %}

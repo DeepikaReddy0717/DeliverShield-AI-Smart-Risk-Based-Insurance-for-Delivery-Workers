@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+
+/* Page background */
+body{
+background:linear-gradient(135deg,#eef2f7,#f8fafc);
+font-family:'Segoe UI',sans-serif;
+}
+
+/* Center spacing */
+.row{
+margin-top:60px;
+}
+
+/* Form Card */
+
+.form-container{
+background:#ffffff;
+padding:50px 60px;
+border-radius:18px;
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+border:1px solid #e2e8f0;
+max-width:550px;
+margin:auto;
+}
+
+/* Title */
+
+.form-title{
+font-weight:700;
+font-size:26px;
+color:#1e293b;
+margin-bottom:35px;
+text-align:center;
+letter-spacing:1px;
+}
+
+/* Labels */
+
+.form-label{
+display:block;
+font-weight:600;
+color:#475569;
+margin-bottom:6px;
+}
+
+/* Fix Django input fields */
+
+input, select, textarea{
+width:100%;
+padding:12px 14px;
+border-radius:10px;
+border:1px solid #d1d5db;
+background:#f8fafc;
+font-size:14px;
+transition:all .25s ease;
+}
+
+/* Input focus */
+
+input:focus, select:focus, textarea:focus{
+outline:none;
+border-color:#64748b;
+background:#ffffff;
+box-shadow:0 0 0 3px rgba(100,116,139,0.15);
+}
+
+/* Textarea height */
+
+textarea{
+min-height:120px;
+resize:none;
+}
+
+/* Button area */
+
+.text-center{
+margin-top:30px;
+}
+
+/* Save button */
+
+.btn-save{
+background:linear-gradient(135deg,#334155,#1e293b);
+color:white;
+padding:12px 32px;
+border:none;
+border-radius:30px;
+font-weight:600;
+font-size:14px;
+transition:all .3s ease;
+box-shadow:0 8px 20px rgba(0,0,0,0.12);
+}
+
+.btn-save:hover{
+transform:translateY(-2px);
+box-shadow:0 12px 25px rgba(0,0,0,0.18);
+}
+
+/* Cancel button */
+
+.btn-cancel{
+border-radius:30px;
+padding:12px 30px;
+border:1px solid #cbd5e1;
+background:#f1f5f9;
+color:#475569;
+transition:.3s;
+}
+
+.btn-cancel:hover{
+background:#e2e8f0;
+}
+
+</style>
+
+
+<div class="row justify-content-center">
+
+<div class="col-md-6">
+
+<div class="form-container">
+
+<h3 class="form-title">Add Insurance Plan</h3>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<div class="mb-3">
+<label class="form-label">Plan Name</label>
+{{ form.name }}
+</div>
+
+<div class="mb-3">
+<label class="form-label">Weekly Premium</label>
+{{ form.weekly_premium }}
+</div>
+
+<div class="mb-3">
+<label class="form-label">Coverage Details</label>
+{{ form.coverage }}
+</div>
+
+<div class="text-center mt-4">
+
+<button class="btn-save">
+Save Plan
+</button>
+
+<a href="/plans/" class="btn btn-outline-secondary btn-cancel ms-2">
+Cancel
+</a>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
