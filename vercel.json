@@ -1,0 +1,14 @@
+{
+  "builds": [
+    {
+      "src": "DeliverShield/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "DeliverShield/wsgi.py"
+    }
+  ]
+}
